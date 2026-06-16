@@ -1022,40 +1022,58 @@ ul li::marker { color: #00B04F; }
 @keyframes regRow { from { opacity: 0; transform: translateY(-12px); } to { opacity: 1; transform: none; } }
 
 /* ————————————————————————————————
-   The power of dsOMOP (federated histogram)
+   The power of dsOMOP : federated flow (1 script 4 all)
    ———————————————————————————————— */
 
-.pow-sub { text-align: center; font-family: 'Roboto Mono', monospace; font-size: 0.82em; color: #c8d0d8; }
-.pow-sub strong { color: #FEAE00 !important; }
+.fed-sub { text-align: center; font-family: 'Roboto Mono', monospace; font-size: 0.82em; color: #c8d0d8; min-height: 1.3em; }
+.fed-sub span { display: inline-block; }
+.fed-sub strong { color: #FEAE00 !important; }
 
-.pow-stage { flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; gap: 1.1rem; padding: 0 0.6rem; }
+.fed-stage { position: relative; flex: 1; min-height: 0; width: 100%; }
 
-.pow-sites { display: flex; flex-direction: column; gap: 0.55rem; flex: 0 0 auto; }
-.pow-site {
-  background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 10px; padding: 7px 11px 9px; width: 222px;
-  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+.fed-lines { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
+.fed-line { fill: none; stroke-width: 1.7; vector-effect: non-scaling-stroke; stroke-dasharray: 5 5; opacity: 0; transition: opacity 0.45s ease; }
+.fed-line.show { opacity: 0.92; animation: fedFlow 0.7s linear infinite; }
+.fed-up { stroke: #FEAE00; }
+.fed-down { stroke: #00D964; }
+@keyframes fedFlow { to { stroke-dashoffset: -20; } }
+
+.fed-node {
+  position: absolute; transform: translateX(-50%); width: 152px; text-align: center; z-index: 2;
+  background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 11px; padding: 8px 10px 9px;
+  transition: box-shadow 0.4s ease, border-color 0.4s ease;
 }
-.pow-site.on { border-color: rgba(255, 255, 255, 0.28); }
-.pow-site-head { display: flex; justify-content: space-between; align-items: baseline; font-family: 'Roboto Mono', monospace; }
-.pow-site-name { font-size: 0.74em; font-weight: 700; letter-spacing: 0.02em; }
-.pow-site-n { font-size: 0.56em; color: #9fb4c4; }
-.pow-mini { display: flex; align-items: flex-end; gap: 3px; height: 38px; margin-top: 6px; }
-.pow-mini-bar { flex: 1; border-radius: 2px 2px 0 0; opacity: 0.88; }
+.fed-node.compute { border-color: rgba(254, 174, 0, 0.55); box-shadow: 0 0 24px rgba(254, 174, 0, 0.22); }
+.fed-node-icon { display: flex; align-items: center; justify-content: center; gap: 6px; }
+.fed-node-name { font-family: 'Roboto Mono', monospace; font-weight: 700; font-size: 0.8em; }
+.fed-node-omop { font-family: 'Roboto Mono', monospace; font-size: 0.52em; color: #7fd6a3; margin-top: 2px; letter-spacing: 0.05em; }
+.fed-node-n { font-family: 'Roboto Mono', monospace; font-size: 0.52em; color: #9fb4c4; }
+.fed-run { font-family: 'Roboto Mono', monospace; font-size: 0.5em; color: #FEAE00; margin-top: 4px; height: 0.9em; opacity: 0; transition: opacity 0.4s ease; }
+.fed-node.compute .fed-run { opacity: 1; }
+.fed-mini { display: flex; align-items: flex-end; justify-content: center; gap: 2.5px; height: 26px; margin-top: 6px; border-bottom: 1px solid rgba(255, 255, 255, 0.12); }
+.fed-mini-bar { flex: 1; border-radius: 2px 2px 0 0; opacity: 0.9; transition: height 0.55s cubic-bezier(0.22, 1, 0.36, 1); }
 
-.pow-merge { display: flex; flex-direction: column; align-items: center; gap: 3px; font-family: 'Roboto Mono', monospace; color: #8fb0c8; font-size: 0.58em; flex: 0 0 auto; }
-.pow-arrow { font-size: 1.9em; line-height: 1; color: #FEAE00; }
+.fed-tag {
+  position: absolute; left: 50%; top: 45%; z-index: 3; white-space: nowrap;
+  font-family: 'Roboto Mono', monospace; font-weight: 700; font-size: 1.05em; color: #FEAE00;
+  background: rgba(12, 20, 32, 0.85); border: 1px solid rgba(254, 174, 0, 0.5);
+  padding: 5px 16px; border-radius: 20px; box-shadow: 0 0 26px rgba(254, 174, 0, 0.35);
+  opacity: 0; transform: translate(-50%, -50%) scale(0.8);
+  transition: opacity 0.45s ease, transform 0.45s cubic-bezier(0.34, 1.4, 0.6, 1);
+}
+.fed-tag.show { opacity: 1; transform: translate(-50%, -50%) scale(1); }
 
-.pow-combined { flex: 0 1 auto; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 12px; padding: 10px 16px 9px; }
-.pow-combined-title { font-family: 'Roboto Mono', monospace; font-size: 0.72em; font-weight: 700; text-align: center; margin-bottom: 8px; color: #eef2f5; }
-.pow-combined-title .n { color: #7fd6a3; }
-.pow-bars { display: flex; align-items: flex-end; gap: 9px; height: 205px; width: 360px; }
-.pow-col { flex: 1; display: flex; flex-direction: column-reverse; border-radius: 4px 4px 0 0; overflow: hidden; }
-.pow-seg { width: 100%; transition: height 0.6s cubic-bezier(0.22, 1, 0.36, 1); }
-.pow-xaxis { display: flex; gap: 9px; margin-top: 5px; }
-.pow-xlabel { flex: 1; text-align: center; font-family: 'Roboto Mono', monospace; font-size: 0.5em; color: #9fb4c4; }
-.pow-legend { display: flex; justify-content: center; gap: 15px; margin-top: 8px; }
-.pow-legend span { font-family: 'Roboto Mono', monospace; font-size: 0.56em; color: #c8d0d8; display: flex; align-items: center; gap: 5px; }
-.pow-dot { width: 9px; height: 9px; border-radius: 2px; display: inline-block; }
-
-.pow-caption { text-align: center; font-size: 0.78em; color: #c8b8a8; min-height: 1.2em; }
+.fed-client { position: absolute; left: 50%; bottom: 0; transform: translateX(-50%); width: 308px; z-index: 2; text-align: center; }
+.fed-monitor { background: #0b1320; border: 1px solid rgba(255, 255, 255, 0.18); border-radius: 10px; padding: 9px 13px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); }
+.fed-script { font-family: 'Roboto Mono', monospace; font-size: 0.62em; text-align: left; white-space: nowrap; color: #e6dccb; }
+.fed-script .fn { color: #FEAE00; }
+.fed-script .kw { color: #7fb0ff; }
+.fed-script .cm { color: #6f7d8c; }
+.fed-bars { display: flex; align-items: flex-end; justify-content: center; gap: 5px; height: 54px; margin-top: 9px; border-bottom: 1px solid rgba(255, 255, 255, 0.12); }
+.fed-col { width: 19px; display: flex; flex-direction: column-reverse; border-radius: 3px 3px 0 0; overflow: hidden; }
+.fed-seg { width: 100%; transition: height 0.55s cubic-bezier(0.22, 1, 0.36, 1); }
+.fed-pooled-label { font-family: 'Roboto Mono', monospace; font-size: 0.5em; color: #7fd6a3; margin-top: 5px; min-height: 0.8em; opacity: 0; transition: opacity 0.4s ease; }
+.fed-pooled-label.show { opacity: 1; }
+.fed-client-label { font-family: 'Roboto Mono', monospace; font-size: 0.6em; color: #c8d0d8; margin-top: 7px; }
+.fed-client-label .role { color: #9fb4c4; }
