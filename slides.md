@@ -124,6 +124,14 @@ class: match-slide
 ---
 
 ---
+src: ./slides/dsomop-architecture.md
+---
+
+---
+src: ./slides/dsomop-simplify.md
+---
+
+---
 src: ./slides/closing.md
 class: closing-slide
 ---

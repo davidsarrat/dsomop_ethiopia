@@ -1077,3 +1077,96 @@ ul li::marker { color: #00B04F; }
 .fed-pooled-label.show { opacity: 1; }
 .fed-client-label { font-family: 'Roboto Mono', monospace; font-size: 0.6em; color: #c8d0d8; margin-top: 7px; }
 .fed-client-label .role { color: #9fb4c4; }
+
+/* ————————————————————————————————
+   dsOMOP architecture (client / server / database)
+   ———————————————————————————————— */
+
+.arch-sub { text-align: center; font-family: 'Roboto Mono', monospace; font-size: 0.82em; color: #c8d0d8; min-height: 1.3em; }
+.arch-sub span { display: inline-block; }
+.arch-sub strong { color: #FEAE00 !important; }
+
+.arch-stage { flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; gap: 0.1rem; position: relative; }
+.arch-node { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.14); border-radius: 12px; padding: 12px 12px 11px; width: 150px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 6px; flex: 0 0 auto; }
+.arch-node-name { font-family: 'Roboto Mono', monospace; font-weight: 700; font-size: 0.72em; color: #eef2f5; line-height: 1.2; }
+.arch-node-sub { font-family: 'Roboto Mono', monospace; font-size: 0.52em; color: #9fb4c4; }
+.arch-badge { font-family: 'Roboto Mono', monospace; font-size: 0.54em; font-weight: 600; padding: 2px 9px; border-radius: 20px; }
+.arch-badge.client { color: #5cebff; background: rgba(92, 235, 255, 0.1); border: 1px solid rgba(92, 235, 255, 0.4); }
+.arch-badge.server { color: #7fd6a3; background: rgba(0, 176, 79, 0.12); border: 1px solid rgba(0, 176, 79, 0.45); }
+
+.arch-conn { flex: 0 0 auto; }
+.arch-lbl { font-family: 'Roboto Mono', monospace; font-size: 7px; fill: #9fb4c4; }
+.arch-arrow-line { stroke: #586472; stroke-width: 1.7; stroke-dasharray: 5 4; fill: none; }
+.arch-arrow-line.flow { stroke: #5cebff; animation: archFlow 0.7s linear infinite; }
+.arch-arrow-line.back.flow { stroke: #00D964; animation: archFlowBack 0.7s linear infinite; }
+.arch-head { fill: #586472; transition: fill 0.4s ease; }
+.arch-head.flow-r { fill: #5cebff; }
+.arch-head.flow-l { fill: #00D964; }
+@keyframes archFlow { to { stroke-dashoffset: -18; } }
+@keyframes archFlowBack { to { stroke-dashoffset: 18; } }
+
+.arch-cable { stroke: #4a5562; stroke-width: 2.6; fill: none; transition: stroke 0.45s ease; }
+.arch-conn-sd.connected .arch-cable { stroke: #00D964; }
+.arch-plug { fill: #4a5562; transition: fill 0.45s ease, transform 0.55s cubic-bezier(0.34, 1.5, 0.6, 1); transform: translateX(-13px); }
+.arch-conn-sd.connected .arch-plug { fill: #00D964; transform: translateX(0); }
+.arch-socket { stroke: #4a5562; stroke-width: 2.2; fill: none; transition: stroke 0.45s ease; }
+.arch-conn-sd.connected .arch-socket { stroke: #00D964; }
+.arch-spark { opacity: 0; transition: opacity 0.3s ease 0.45s; }
+.arch-conn-sd.connected .arch-spark { opacity: 1; }
+
+.arch-resource {
+  position: absolute; left: 67%; bottom: -2%; transform: translateX(-50%) translateY(10px); width: 218px; z-index: 4;
+  background: #0b1320; border: 1px solid rgba(0, 217, 100, 0.4); border-radius: 9px; padding: 8px 12px;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.5); opacity: 0; transition: opacity 0.45s ease, transform 0.5s cubic-bezier(0.34, 1.4, 0.6, 1);
+}
+.arch-resource.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+.arch-res-title { font-family: 'Roboto Mono', monospace; font-size: 0.56em; font-weight: 700; color: #5fe0a0; margin-bottom: 4px; }
+.arch-res-row { display: flex; justify-content: space-between; font-family: 'Roboto Mono', monospace; font-size: 0.56em; line-height: 1.55; }
+.arch-res-row .k { color: #6f7d8c; }
+.arch-res-row .v { color: #e6dccb; }
+
+/* ————————————————————————————————
+   dsOMOP simplification (catalog -> tables -> dataset)
+   ———————————————————————————————— */
+
+.sim-sub { text-align: center; font-family: 'Roboto Mono', monospace; font-size: 0.8em; color: #c8d0d8; min-height: 1.2em; }
+.sim-sub span { display: inline-block; }
+.sim-sub strong { color: #FEAE00 !important; }
+
+.sim-catalog { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 0.3rem 1.1rem; font-family: 'Roboto Mono', monospace; font-size: 0.62em; background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 10px; padding: 7px 14px; }
+.sim-cat-label { color: #FEAE00; font-weight: 700; }
+.sim-group .dom { color: #7fd6a3; }
+.sim-group b { color: #e6dccb; font-weight: 600; }
+
+.sim-stage { flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; gap: 0.7rem; }
+
+.sim-tables { display: flex; flex-direction: column; gap: 0.4rem; opacity: 0; transition: opacity 0.5s ease; }
+.sim-tables.show { opacity: 1; }
+.sim-table { background: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35); }
+.sim-tname { font-family: 'Roboto Mono', monospace; font-weight: 700; font-size: 0.5em; color: #11403c; background: #e6f4ed; padding: 3px 9px; }
+.sim-thead, .sim-trow { display: flex; font-family: 'Roboto Mono', monospace; }
+.sim-thead { background: #f4f6f8; color: #909aa6; font-size: 0.46em; }
+.sim-trow { color: #28323d; font-size: 0.56em; border-top: 1px solid #eef1f4; }
+.sim-tc { padding: 3px 10px; white-space: nowrap; }
+.sim-c1 { width: 64px; }
+.sim-c2 { width: 116px; }
+.sim-c3 { width: 64px; }
+.sim-pid { color: #2F80ED; font-weight: 700; }
+.sim-cid { font-weight: 700; }
+
+.sim-arrow { display: flex; flex-direction: column; align-items: center; gap: 3px; opacity: 0; transition: opacity 0.5s ease 0.15s; flex: 0 0 auto; }
+.sim-arrow.show { opacity: 1; }
+.sim-arrow svg { display: block; }
+.sim-arrow .lbl { font-family: 'Roboto Mono', monospace; font-size: 0.5em; color: #9fb4c4; }
+
+.sim-dataset { opacity: 0; transform: translateX(14px); transition: opacity 0.5s ease 0.2s, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.2s; }
+.sim-dataset.show { opacity: 1; transform: none; }
+.sim-ds-title { font-family: 'Roboto Mono', monospace; font-size: 0.58em; font-weight: 700; color: #7fd6a3; text-align: center; margin-bottom: 5px; }
+.sim-ds-table { background: #ffffff; border-radius: 9px; overflow: hidden; box-shadow: 0 10px 26px rgba(0, 0, 0, 0.42); }
+.sim-ds-head, .sim-ds-row { display: flex; font-family: 'Roboto Mono', monospace; }
+.sim-ds-head { background: #eef6f1; color: #11403c; font-size: 0.5em; font-weight: 700; }
+.sim-ds-row { color: #28323d; font-size: 0.56em; border-top: 1px solid #eef1f4; }
+.sim-ds-c { padding: 5px 11px; width: 96px; text-align: center; white-space: nowrap; }
+.sim-ds-c.pid { color: #2F80ED; font-weight: 700; }
+.sim-ds-head .cid { color: #b06a00; }
+.sim-ds-head .name { color: #00863a; }
