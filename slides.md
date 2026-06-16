@@ -90,6 +90,14 @@ src: ./slides/vocab-problem.md
 ---
 
 ---
+src: ./slides/vocab-lookup.md
+---
+
+---
+src: ./slides/athena-search.md
+---
+
+---
 src: ./slides/omop-schema-clinical.md
 ---
 
