@@ -82,6 +82,14 @@ src: ./slides/omop-perks.md
 ---
 
 ---
+src: ./slides/omop-schema.md
+---
+
+---
+src: ./slides/omop-schema-clinical.md
+---
+
+---
 src: ./slides/closing.md
 class: closing-slide
 ---
