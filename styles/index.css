@@ -1020,3 +1020,42 @@ ul li::marker { color: #00B04F; }
 
 @keyframes regIn { from { opacity: 0; transform: translateY(16px) scale(0.96); } to { opacity: 1; transform: none; } }
 @keyframes regRow { from { opacity: 0; transform: translateY(-12px); } to { opacity: 1; transform: none; } }
+
+/* ————————————————————————————————
+   The power of dsOMOP (federated histogram)
+   ———————————————————————————————— */
+
+.pow-sub { text-align: center; font-family: 'Roboto Mono', monospace; font-size: 0.82em; color: #c8d0d8; }
+.pow-sub strong { color: #FEAE00 !important; }
+
+.pow-stage { flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; gap: 1.1rem; padding: 0 0.6rem; }
+
+.pow-sites { display: flex; flex-direction: column; gap: 0.55rem; flex: 0 0 auto; }
+.pow-site {
+  background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px; padding: 7px 11px 9px; width: 222px;
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+}
+.pow-site.on { border-color: rgba(255, 255, 255, 0.28); }
+.pow-site-head { display: flex; justify-content: space-between; align-items: baseline; font-family: 'Roboto Mono', monospace; }
+.pow-site-name { font-size: 0.74em; font-weight: 700; letter-spacing: 0.02em; }
+.pow-site-n { font-size: 0.56em; color: #9fb4c4; }
+.pow-mini { display: flex; align-items: flex-end; gap: 3px; height: 38px; margin-top: 6px; }
+.pow-mini-bar { flex: 1; border-radius: 2px 2px 0 0; opacity: 0.88; }
+
+.pow-merge { display: flex; flex-direction: column; align-items: center; gap: 3px; font-family: 'Roboto Mono', monospace; color: #8fb0c8; font-size: 0.58em; flex: 0 0 auto; }
+.pow-arrow { font-size: 1.9em; line-height: 1; color: #FEAE00; }
+
+.pow-combined { flex: 0 1 auto; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 12px; padding: 10px 16px 9px; }
+.pow-combined-title { font-family: 'Roboto Mono', monospace; font-size: 0.72em; font-weight: 700; text-align: center; margin-bottom: 8px; color: #eef2f5; }
+.pow-combined-title .n { color: #7fd6a3; }
+.pow-bars { display: flex; align-items: flex-end; gap: 9px; height: 205px; width: 360px; }
+.pow-col { flex: 1; display: flex; flex-direction: column-reverse; border-radius: 4px 4px 0 0; overflow: hidden; }
+.pow-seg { width: 100%; transition: height 0.6s cubic-bezier(0.22, 1, 0.36, 1); }
+.pow-xaxis { display: flex; gap: 9px; margin-top: 5px; }
+.pow-xlabel { flex: 1; text-align: center; font-family: 'Roboto Mono', monospace; font-size: 0.5em; color: #9fb4c4; }
+.pow-legend { display: flex; justify-content: center; gap: 15px; margin-top: 8px; }
+.pow-legend span { font-family: 'Roboto Mono', monospace; font-size: 0.56em; color: #c8d0d8; display: flex; align-items: center; gap: 5px; }
+.pow-dot { width: 9px; height: 9px; border-radius: 2px; display: inline-block; }
+
+.pow-caption { text-align: center; font-size: 0.78em; color: #c8b8a8; min-height: 1.2em; }

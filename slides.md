@@ -111,6 +111,14 @@ src: ./slides/longitudinal-data.md
 ---
 
 ---
+src: ./slides/combining-section.md
+---
+
+---
+src: ./slides/power-dsomop.md
+---
+
+---
 src: ./slides/closing.md
 class: closing-slide
 ---
