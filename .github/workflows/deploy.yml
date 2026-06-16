@@ -30,6 +30,9 @@ jobs:
       - name: Build
         run: npx slidev build slides.md --base /dsomop_ethiopia/ --out dist
 
+      - name: Generate per-slide deep-link fallbacks
+        run: for i in $(seq 1 60); do cp dist/index.html "dist/$i.html"; done
+
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v4
         with:

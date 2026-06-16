@@ -1,7 +1,6 @@
 ---
 theme: default
 title: dsOMOP Workshop
-routerMode: hash
 class: text-center
 drawings:
   persist: false
@@ -100,6 +99,14 @@ src: ./slides/athena-search.md
 
 ---
 src: ./slides/omop-schema-clinical.md
+---
+
+---
+src: ./slides/model-extensibility.md
+---
+
+---
+src: ./slides/longitudinal-data.md
 ---
 
 ---

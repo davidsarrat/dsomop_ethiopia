@@ -948,3 +948,75 @@ ul li::marker { color: #00B04F; }
 .closing-slide.slidev-layout a {
   color: #0A1119 !important;
 }
+
+/* ————————————————————————————————
+   Registry tables (extensibility + longitudinal)
+   ———————————————————————————————— */
+
+.reg-prompt {
+  text-align: center;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.9em;
+  color: #d8d2ca;
+  min-height: 1.4em;
+}
+.reg-prompt strong { color: #FEAE00 !important; }
+.reg-prompt span { display: inline-block; }
+.regfade-enter-active { transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1); }
+.regfade-leave-active { transition: opacity 0.22s ease, transform 0.22s ease; }
+.regfade-enter-from { opacity: 0; transform: translateY(8px); }
+.regfade-leave-to { opacity: 0; transform: translateY(-8px); }
+
+.reg-stage {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1.7rem;
+  padding: 0 1rem 0 2.4rem;
+}
+.reg-person { flex: 0 0 auto; display: flex; flex-direction: column; align-items: center; gap: 0.4rem; }
+.reg-avatar {
+  width: 90px; height: 90px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  background: radial-gradient(circle at 50% 38%, rgba(0, 176, 79, 0.22), rgba(0, 176, 79, 0.04) 70%);
+  border: 1px solid rgba(0, 176, 79, 0.35);
+}
+.reg-person-label { font-family: 'Roboto Mono', monospace; font-size: 0.64em; letter-spacing: 0.12em; color: #7fd6a3; }
+.reg-pidchip {
+  font-family: 'Roboto Mono', monospace; font-size: 0.72em; color: #c8d0d8;
+  background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 8px; padding: 4px 11px; white-space: nowrap;
+}
+
+.reg-tables { flex: 0 1 auto; display: flex; flex-direction: column; gap: 0.4rem; min-width: 0; max-width: 712px; }
+.reg-table {
+  background: #ffffff; border-radius: 10px; overflow: hidden;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.4);
+  animation: regIn 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reg-tname {
+  font-family: 'Roboto Mono', monospace; font-weight: 700; font-size: 0.58em; letter-spacing: 0.05em;
+  color: #11403c; background: #e6f4ed; padding: 3px 12px;
+}
+.reg-head, .reg-row { display: flex; font-family: 'Roboto Mono', monospace; align-items: stretch; }
+.reg-head { background: #f4f6f8; color: #909aa6; font-size: 0.5em; }
+.reg-row { background: #ffffff; color: #28323d; font-size: 0.6em; border-top: 1px solid #eef1f4; animation: regRow 0.5s cubic-bezier(0.22, 1, 0.36, 1); }
+.reg-c { padding: 3px 12px; display: flex; flex-direction: column; justify-content: center; }
+.reg-head .reg-c { justify-content: flex-end; white-space: nowrap; }
+.c-pid { width: 80px; flex: 0 0 auto; }
+.c-cid { flex: 1 1 auto; min-width: 172px; }
+.c-val { width: 132px; flex: 0 0 auto; }
+.c-date { width: 134px; flex: 0 0 auto; }
+.reg-cid { font-weight: 700; font-size: 1.05em; line-height: 1.1; }
+.reg-cid2 { font-weight: 700; font-size: 1em; color: #3a4654; line-height: 1.1; }
+.reg-val { color: #28323d; }
+.reg-cname { font-size: 0.8em; color: #8a96a3; margin-top: 2px; white-space: nowrap; }
+.reg-pidv, .reg-datev { font-weight: 600; }
+.reg-hl { display: inline-block; padding: 1px 7px; border-radius: 7px; font-weight: 700; align-self: flex-start; }
+
+.reg-caption { text-align: center; font-size: 0.84em; color: #c8b8a8; margin-top: 0.2rem; }
+
+@keyframes regIn { from { opacity: 0; transform: translateY(16px) scale(0.96); } to { opacity: 1; transform: none; } }
+@keyframes regRow { from { opacity: 0; transform: translateY(-12px); } to { opacity: 1; transform: none; } }
