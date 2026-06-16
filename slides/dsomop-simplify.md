@@ -2,34 +2,52 @@
 clicks: 3
 ---
 <script setup>
-const subs = [
-  'Browse a catalog of the concepts available at the site.',
-  'Under the hood: many tables, all keyed by <strong>concept_id</strong>, joined on person.',
-  'dsOMOP merges them into one dataset, tailored to the concepts you picked.',
-  'And it translates the <strong>concept_ids</strong> into readable <strong>names</strong>.',
+const steps = [
+  { n: 1, label: 'Concept catalog' },
+  { n: 2, label: 'Preview the data' },
+  { n: 3, label: 'One dataset' },
+  { n: 4, label: 'Readable names' },
 ]
-const cols = [
-  { cid: '201826', name: 'type_2_diabetes' },
-  { cid: '1503297', name: 'metformin' },
-  { cid: '4099154', name: 'body_weight' },
-  { cid: '4184637', name: 'hba1c' },
+const titles = [
+  'Browse a catalog of the concepts available at the site, like a menu.',
+  'Preview the cohort at a glance before pulling anything.',
+  'Everything converges into one dataset — keyed by concept_id, with disclosure control.',
+  'dsOMOP translates the concept_ids into readable text.',
 ]
-const rows = [
-  { pid: '1234', vals: ['Yes', 'Yes', '78 kg', '7.4 %'] },
-  { pid: '1297', vals: ['No', 'Yes', '81 kg', '6.8 %'] },
+const ages = [8, 18, 30, 26, 14, 6]
+const ageLab = ['<40', '40s', '50s', '60s', '70s', '80+']
+const topc = [
+  { name: 'Hypertension', v: 38, color: '#FF6900' },
+  { name: 'Type 2 diabetes', v: 29, color: '#E5484D' },
+  { name: 'Asthma', v: 17, color: '#FEAE00' },
+  { name: 'Varicella', v: 9, color: '#8B5CF6' },
+]
+const dcols = [
+  { cid: 'gender_concept_id', nm: 'gender' },
+  { cid: 'condition_concept_id', nm: 'condition' },
+  { cid: 'drug_concept_id', nm: 'drug' },
+  { cid: 'hba1c', nm: 'hba1c' },
+]
+const drows = [
+  { pid: '1234', c: [{ id: '8532', t: 'Female' }, { id: '201826', t: 'Type 2 diabetes' }, { id: '1503297', t: 'Metformin' }, { id: '7.4', t: '7.4 %' }] },
+  { pid: '1297', c: [{ id: '8507', t: 'Male' }, { id: '320128', t: 'Hypertension' }, { id: '1503297', t: 'Metformin' }, { id: '6.1', t: '6.1 %' }] },
+  { pid: '1305', c: [{ id: '8532', t: 'Female' }, { id: '201826', t: 'Type 2 diabetes' }, { id: '1503297', t: 'Metformin' }, { id: '7.9', t: '7.9 %' }] },
+  { pid: '1342', c: [{ id: '8507', t: 'Male' }, { id: '317009', t: 'Asthma' }, { id: '< 5', t: '< 5', supp: true }, { id: '5.6', t: '5.6 %' }] },
+  { pid: '1358', c: [{ id: '8532', t: 'Female' }, { id: '320128', t: 'Hypertension' }, { id: '1503297', t: 'Metformin' }, { id: '6.4', t: '6.4 %' }] },
 ]
 </script>
 <div class="flex flex-col h-full" style="gap: 0.4rem;">
 <h2 style="font-size: 1.08em; text-align: center;">dsOMOP removes the complexity</h2>
-<div class="sim-sub"><transition name="regfade" mode="out-in"><span :key="Math.min($clicks, 3)" v-html="subs[Math.min($clicks, 3)]"></span></transition></div>
-<div class="sim-catalog"><span class="sim-cat-label">Concept catalog</span><span class="sim-group"><span class="dom">Conditions</span> ▸ <b>Type 2 diabetes</b> · Varicella</span><span class="sim-group"><span class="dom">Drugs</span> ▸ <b>Metformin</b> · Insulin</span><span class="sim-group"><span class="dom">Measurements</span> ▸ <b>Body weight</b> · <b>HbA1c</b></span></div>
-<div class="sim-stage">
-<div class="sim-tables" :class="{ show: $clicks >= 1 }">
-<div class="sim-table"><div class="sim-tname">condition_occurrence</div><div class="sim-thead"><div class="sim-tc sim-c1">person_id</div><div class="sim-tc sim-c2">condition_concept_id</div></div><div class="sim-trow"><div class="sim-tc sim-c1 sim-pid">1234</div><div class="sim-tc sim-c2 sim-cid" style="color: #F2710A;">201826</div></div></div>
-<div class="sim-table"><div class="sim-tname">drug_exposure</div><div class="sim-thead"><div class="sim-tc sim-c1">person_id</div><div class="sim-tc sim-c2">drug_concept_id</div></div><div class="sim-trow"><div class="sim-tc sim-c1 sim-pid">1234</div><div class="sim-tc sim-c2 sim-cid" style="color: #8B5CF6;">1503297</div></div></div>
-<div class="sim-table"><div class="sim-tname">measurement</div><div class="sim-thead"><div class="sim-tc sim-c1">person_id</div><div class="sim-tc sim-c2">measurement_concept_id</div><div class="sim-tc sim-c3">value</div></div><div class="sim-trow"><div class="sim-tc sim-c1 sim-pid">1234</div><div class="sim-tc sim-c2 sim-cid" style="color: #00B04F;">4099154</div><div class="sim-tc sim-c3">78</div></div></div>
+<div class="sx-stepper"><template v-for="(s, i) in steps" :key="s.n"><div class="sx-conn" :class="{ done: Math.min($clicks, 3) >= i }" v-if="i > 0"></div><div class="sx-step" :class="{ active: i === Math.min($clicks, 3), done: i < Math.min($clicks, 3) }"><span class="sx-num">{{ s.n }}</span><span class="sx-step-label">{{ s.label }}</span></div></template></div>
+<div class="sx-cap">{{ titles[Math.min($clicks, 3)] }}</div>
+<div class="sx-stage">
+<transition name="sxfade" mode="out-in">
+<div class="sx-panel" :key="Math.min($clicks, 3)">
+<template v-if="Math.min($clicks, 3) === 0"><div class="sx-menu"><div><div class="sx-menu-h" style="color:#E5484D;">CONDITIONS</div><div class="sx-menu-item"><span>Type 2 diabetes</span><span class="dom">SNOMED</span></div><div class="sx-menu-item"><span>Hypertension</span><span class="dom">SNOMED</span></div><div class="sx-menu-item"><span>Asthma</span><span class="dom">SNOMED</span></div></div><div><div class="sx-menu-h" style="color:#8B5CF6;">DRUGS</div><div class="sx-menu-item"><span>Metformin</span><span class="dom">RxNorm</span></div><div class="sx-menu-item"><span>Insulin</span><span class="dom">RxNorm</span></div><div class="sx-menu-item"><span>Statins</span><span class="dom">RxNorm</span></div></div><div><div class="sx-menu-h" style="color:#00B04F;">MEASUREMENTS</div><div class="sx-menu-item"><span>Body weight</span><span class="dom">LOINC</span></div><div class="sx-menu-item"><span>HbA1c</span><span class="dom">LOINC</span></div><div class="sx-menu-item"><span>Blood pressure</span><span class="dom">LOINC</span></div></div><div><div class="sx-menu-h" style="color:#FEAE00;">OBSERVATIONS</div><div class="sx-menu-item"><span>Gender</span><span class="dom">SNOMED</span></div><div class="sx-menu-item"><span>Smoking status</span><span class="dom">LOINC</span></div><div class="sx-menu-item"><span>Marital status</span><span class="dom">SNOMED</span></div></div></div></template>
+<template v-else-if="Math.min($clicks, 3) === 1"><div class="sx-charts"><div class="sx-chart"><div class="sx-chart-title">Age distribution</div><div class="sx-bars"><div class="sx-bar" v-for="(a, i) in ages" :key="i" :style="{ height: (a * 2.6) + 'px', background: '#5cebff' }"></div></div><div class="sx-xlab"><span v-for="(l, i) in ageLab" :key="i">{{ l }}</span></div></div><div class="sx-chart"><div class="sx-chart-title">Gender</div><div class="sx-gender"><div class="sx-gcol"><div class="sx-gbar" style="height:84px; background:#e5749b;"></div><div class="sx-glab">F 56%</div></div><div class="sx-gcol"><div class="sx-gbar" style="height:66px; background:#5b9fe0;"></div><div class="sx-glab">M 44%</div></div></div></div><div class="sx-chart"><div class="sx-chart-title">Most common conditions</div><div class="sx-hbars"><div class="sx-hbar" v-for="c in topc" :key="c.name"><span class="sx-hbar-lab">{{ c.name }}</span><div class="sx-hbar-fill" :style="{ width: (c.v * 2.6) + 'px', background: c.color }"></div></div></div></div></div></template>
+<template v-else-if="Math.min($clicks, 3) === 2"><div class="sx-ds"><div class="sx-dh"><div class="sx-dc pid">person_id</div><div class="sx-dc cid" v-for="col in dcols" :key="col.cid">{{ col.cid }}</div></div><div class="sx-dr" v-for="r in drows" :key="r.pid"><div class="sx-dc pid">{{ r.pid }}</div><div class="sx-dc" v-for="(cell, j) in r.c" :key="j"><span v-if="cell.supp" class="sx-supp">{{ cell.id }}</span><span v-else>{{ cell.id }}</span></div></div></div><div class="sx-disc">🔒 <span><b>Disclosure control</b> : any subgroup with n &lt; 5 patients is blocked before it leaves the server.</span></div></template>
+<template v-else><div class="sx-ds"><div class="sx-dh tr"><div class="sx-dc pid">person_id</div><div class="sx-dc nm" v-for="col in dcols" :key="col.nm">{{ col.nm }}</div></div><div class="sx-dr" v-for="r in drows" :key="r.pid"><div class="sx-dc pid">{{ r.pid }}</div><div class="sx-dc" v-for="(cell, j) in r.c" :key="j"><span v-if="cell.supp" class="sx-supp">{{ cell.t }}</span><span v-else class="sx-tr-v">{{ cell.t }}</span></div></div></div></template>
 </div>
-<div class="sim-arrow" :class="{ show: $clicks >= 2 }"><svg width="46" height="20" viewBox="0 0 46 20"><line x1="2" y1="10" x2="36" y2="10" stroke="#FEAE00" stroke-width="2" /><polygon points="36,5 44,10 36,15" fill="#FEAE00" /></svg><span class="lbl">merge</span></div>
-<div class="sim-dataset" :class="{ show: $clicks >= 2 }"><div class="sim-ds-title">Your dataset · one row per person</div><div class="sim-ds-table"><div class="sim-ds-head"><div class="sim-ds-c pid">person_id</div><div class="sim-ds-c" v-for="col in cols" :key="col.cid"><transition name="regfade" mode="out-in"><span :key="$clicks >= 3" :class="$clicks >= 3 ? 'name' : 'cid'">{{ $clicks >= 3 ? col.name : col.cid }}</span></transition></div></div><div class="sim-ds-row" v-for="r in rows" :key="r.pid"><div class="sim-ds-c pid">{{ r.pid }}</div><div class="sim-ds-c" v-for="(v, i) in r.vals" :key="i">{{ v }}</div></div></div></div>
+</transition>
 </div>
 </div>
