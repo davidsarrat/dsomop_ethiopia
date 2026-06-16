@@ -1202,9 +1202,6 @@ ul li::marker { color: #00B04F; }
 .sx-cidv { color: #b06a00; font-weight: 600; }
 .sx-disc { display: flex; align-items: center; gap: 8px; font-family: 'Roboto Mono', monospace; font-size: 0.62em; color: #c8b8a8; background: rgba(255, 179, 102, 0.08); border: 1px solid rgba(255, 179, 102, 0.25); border-radius: 9px; padding: 6px 14px; }
 .sx-disc b { color: #ffb366; }
-.cellsub-enter-active { transition: opacity 0.35s ease; }
-.cellsub-leave-active { transition: opacity 0.16s ease; }
-.cellsub-enter-from, .cellsub-leave-to { opacity: 0; }
 .sx-dc.drop { background: rgba(210, 60, 60, 0.06); width: 154px; }
 .sx-strk { text-decoration: line-through; color: #c08a8a; }
 .sx-droptag { color: #d6453b; font-weight: 700; font-size: 0.82em; margin-left: 4px; }
