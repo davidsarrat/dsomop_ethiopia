@@ -4,9 +4,9 @@ clicks: 3
 <script setup>
 const bins = ['<40', '40s', '50s', '60s', '70s', '80+']
 const sites = [
-  { name: 'AHRI', loc: 'Ethiopia', color: '#00B04F', counts: [6, 14, 22, 18, 9, 3], step: 1 },
+  { name: 'Nairobi', loc: 'Kenya', color: '#00B04F', counts: [6, 14, 22, 18, 9, 3], step: 1 },
   { name: 'Douala', loc: 'Cameroon', color: '#FEAE00', counts: [4, 11, 19, 24, 14, 5], step: 2 },
-  { name: 'IRESSEF', loc: 'Senegal', color: '#FF6900', counts: [3, 9, 16, 21, 17, 7], step: 3 },
+  { name: 'Dakar', loc: 'Senegal', color: '#FF6900', counts: [3, 9, 16, 21, 17, 7], step: 3 },
 ]
 const SCALE = 3
 const MINI = 1.5
