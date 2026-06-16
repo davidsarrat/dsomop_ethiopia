@@ -1,7 +1,6 @@
 <script setup>
 import datashield from '../assets/logos/datashield.png'
 import ohdsi from '../assets/logos/ohdsi.png'
-import dsomop from '../assets/dsomop-logo.png'
 </script>
 
 <div class="match-stage">
@@ -11,11 +10,10 @@ import dsomop from '../assets/dsomop-logo.png'
 <div class="ava ava-right"><img :src="ohdsi" alt="OHDSI / OMOP CDM" /></div>
 </div>
 <div class="match-sub">Federated analysis from DataSHIELD, harmonised data from the OMOP CDM : one script runs everywhere, and patient data never moves.</div>
-<div class="match-result"><img :src="dsomop" alt="dsOMOP" /><span class="word">dsOMOP</span></div>
 </div>
 
 <style>
-.match-slide.slidev-layout { background: linear-gradient(135deg, #ff7854 0%, #fd5068 45%, #fd267d 100%) !important; color: #fff; }
+.match-slide.slidev-layout { background: linear-gradient(135deg, #ff7854 0%, #ff5864 50%, #fd267a 100%) !important; color: #fff; }
 .match-slide.slidev-layout::after { opacity: 0; }
 
 .match-stage { height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1.5rem; overflow: hidden; }
@@ -44,12 +42,5 @@ import dsomop from '../assets/dsomop-logo.png'
   text-align: center; line-height: 1.5; color: rgba(255, 255, 255, 0.94);
   animation: matchUp 0.5s ease 0.85s both;
 }
-.match-result {
-  display: flex; align-items: center; gap: 0.5em; background: #fff; border-radius: 30px;
-  padding: 6px 20px; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
-  animation: matchUp 0.5s ease 1.15s both;
-}
-.match-result img { height: 1.5em; }
-.match-result .word { font-family: 'Roboto Mono', monospace; font-weight: 700; font-size: 1.3em; color: #0A1119; }
 @keyframes matchUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
 </style>
