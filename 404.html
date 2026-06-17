@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>dsOMOP Workshop</title>
+<script>
+(function () {
+  var base = '/dsomop_ethiopia/';
+  var l = window.location;
+  var sub = l.pathname.indexOf(base) === 0 ? l.pathname.slice(base.length) : '';
+  sub = sub.replace(/^\/+/, '');
+  l.replace(base + (sub ? '#/' + sub : '') + l.search);
+})();
+</script>
+</head>
+<body></body>
+</html>

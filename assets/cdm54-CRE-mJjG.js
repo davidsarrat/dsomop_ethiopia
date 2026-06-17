@@ -1,0 +1,1 @@
+var e=`/dsomop_ethiopia/assets/cdm54-BDCYnPvu.png`;export{e as t};
